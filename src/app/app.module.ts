@@ -11,6 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 import { HeaderComponent } from './header/header.component';
 
@@ -54,6 +55,7 @@ export function tokenGetter(){
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    NgxGalleryModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

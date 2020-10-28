@@ -20,7 +20,6 @@ import { HeaderComponent } from './header/header.component';
 import {AuthService} from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import {ErrorInterceptor} from './_services/error.interceptor';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
@@ -34,9 +33,9 @@ import { appRoutes } from './routes';
 import { MemberDetailResolver } from './_resolver/member-detail.resolver';
 import { MemberListResolver } from './_resolver/member-list.resolver';
 import { MemberEditResolver } from './_resolver/member-edit.resolver';
-import { from } from 'rxjs';
 import { AuthGuard } from './_guards/auth.guard';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved.guard';
+import { TimeAgoExtendsPipe } from './_utility/timeagoextendspipe';
 
 export function tokenGetter(){
   return localStorage.getItem('token');
@@ -44,6 +43,7 @@ export function tokenGetter(){
 
 @NgModule({
   declarations: [
+    TimeAgoExtendsPipe,
     AppComponent,
     HeaderComponent,
     HomeComponent,

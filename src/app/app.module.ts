@@ -34,6 +34,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { appRoutes } from './routes';
 import { MemberDetailResolver } from './_resolver/member-detail.resolver';
 import { MemberListResolver } from './_resolver/member-list.resolver';
+import { ListResolver } from './_resolver/lists.resolver';
 import { MemberEditResolver } from './_resolver/member-edit.resolver';
 import { AuthGuard } from './_guards/auth.guard';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved.guard';
@@ -88,6 +89,7 @@ export function tokenGetter(){
     MemberDetailResolver,
     MemberListResolver,
     MemberEditResolver,
+    ListResolver,
     AuthGuard,
     PreventUnsavedChanges
   ],

@@ -49,7 +49,6 @@ export class MemberListComponent implements OnInit {
     }, error => {
       this.alertify.error(error);
     });
-    console.log(this.userParams);
   }
 
   pageChanged(event: any): void {

@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
 
@@ -10,18 +12,53 @@ import { AuthService } from '../_services/auth.service';
 export class RegisterComponent implements OnInit {
   model: any = {};
   @Output() cancelRegister: EventEmitter<any> = new EventEmitter<any>();
-  constructor(private authService: AuthService, private alertify: AlertifyService) { }
+  registerForm: FormGroup;
+  bsConfig: Partial<BsDatepickerConfig>;
+
+  constructor(private authService: AuthService,
+              private alertify: AlertifyService,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.bsConfig = {
+      containerClass: 'theme-red'
+    };
+    this.createRegisterForm();
+  }
+
+  createRegisterForm(){
+    this.registerForm = this.fb.group({
+      gender: ['male'],
+      username: ['', Validators.required],
+      knownAs: ['', Validators.required],
+      dateOfBirth: [null , Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
+      confirmPassword: ['', Validators.required]
+    }, { validators: this.passwordMatchValidator});
+  }
+
+  createRegisterFormTraditionalWay(){
+    this.registerForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]),
+      confirmPassword: new FormControl('', [Validators.required])
+    }, this.passwordMatchValidator);
+  }
+
+
+  passwordMatchValidator(g: FormGroup){
+    return g.get('password').value === g.get('confirmPassword').value ? null : { mismatch: true};
   }
 
   register(){
-    console.log(this.model);
-    this.authService.register(this.model).subscribe(() => {
-      this.alertify.success('registration successfull');
-    }, error => {
-      this.alertify.error(error);
-    });
+    // this.authService.register(this.model).subscribe(() => {
+    //   this.alertify.success('registration successfull');
+    // }, error => {
+    //   this.alertify.error(error);
+    // });
+    console.log(this.registerForm.value);
   }
 
   cancel(){

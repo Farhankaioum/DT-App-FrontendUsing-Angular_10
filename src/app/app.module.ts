@@ -15,6 +15,7 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FileUploadModule } from 'ng2-file-upload';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { HeaderComponent } from './header/header.component';
 
@@ -71,6 +72,7 @@ export function tokenGetter(){
     NgxGalleryModule,
     PaginationModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    ButtonsModule.forRoot(),
     FileUploadModule,
     JwtModule.forRoot({
       config: {

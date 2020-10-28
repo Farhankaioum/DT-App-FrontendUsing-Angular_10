@@ -20,7 +20,7 @@ constructor(private http: HttpClient) { }
     return this.http.get<User[]>(this.baseUrl + 'users/');
   }
 
-  getUsersAsync(page?, itemsPerPage?): Observable<PaginatedResult<User[]>>{
+  getUsersAsync(page?, itemsPerPage?, userParams?): Observable<PaginatedResult<User[]>>{
     const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
 
     let params = new HttpParams();
@@ -28,6 +28,13 @@ constructor(private http: HttpClient) { }
     if (page != null && itemsPerPage != null){
       params = params.append('pageNumber', page);
       params = params.append('pageSize', itemsPerPage);
+    }
+
+    if (userParams != null){
+      params = params.append('minAge', userParams.minAge);
+      params = params.append('maxAge', userParams.maxAge);
+      params = params.append('gender', userParams.gender);
+      params = params.append('orderBy', userParams.orderBy);
     }
 
     return this.http.get<User[]>(this.baseUrl + 'users', { observe: 'response', params})

@@ -29,6 +29,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 
 import { appRoutes } from './routes';
@@ -36,6 +37,7 @@ import { MemberDetailResolver } from './_resolver/member-detail.resolver';
 import { MemberListResolver } from './_resolver/member-list.resolver';
 import { ListResolver } from './_resolver/lists.resolver';
 import { MemberEditResolver } from './_resolver/member-edit.resolver';
+import { MessagesResolver } from './_resolver/messages.resolver';
 import { AuthGuard } from './_guards/auth.guard';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved.guard';
 import { TimeAgoExtendsPipe } from './_utility/timeagoextendspipe';
@@ -57,6 +59,7 @@ export function tokenGetter(){
     MemberCardComponent,
     MemberDetailComponent,
     MemberEditComponent,
+    MemberMessagesComponent,
     PhotoEditorComponent
    ],
   imports: [
@@ -90,6 +93,7 @@ export function tokenGetter(){
     MemberListResolver,
     MemberEditResolver,
     ListResolver,
+    MessagesResolver,
     AuthGuard,
     PreventUnsavedChanges
   ],

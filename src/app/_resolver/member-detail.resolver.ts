@@ -11,6 +11,7 @@ import { AlertifyService } from '../_services/alertify.service';
 export class MemberDetailResolver implements Resolve<User>{
     constructor(private userService: UserService, private router: Router,
                 private alertify: AlertifyService){ }
+
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): User | Observable<User> | Promise<User> {
         return this.userService.getUser(route.params.id).pipe(
             catchError(error => {
